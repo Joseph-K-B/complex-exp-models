@@ -2,6 +2,7 @@ const pool = require('../lib/utils/pool.js');
 const setup = require('../data/setup.js');
 const request = require('supertest');
 const app = require('../lib/app.js');
+const Species = require('../lib/models/Species.js');
 
 describe('alchemy-app routes', () => {
   beforeEach(() => {
@@ -36,6 +37,24 @@ describe('alchemy-app routes', () => {
 
   it('it gets all species from table', async () =>
   {
+    const species1 = await Species.insert(
+      {
+        name: 'Feline',
+        type: 'Mammal',
+        extinct: false
+      });
+    const species2 = await Species.insert(
+      {
+        name: 'Canine',
+        type: 'Mammal',
+        extinct: false
+      });
+    const species3 = await Species.insert({
+      name: 'Bear',
+      type: 'Mammal',
+      extinct: false
+    });
+
     return await request(app)
       .get('/api/species')
       .then((res) =>
