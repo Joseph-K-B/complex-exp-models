@@ -64,6 +64,43 @@ describe('alchemy-app routes', () => {
       });
   });
 
+
+
+  it('it gets species by id from table', async () =>
+  {
+    const species1 = await Species.insert(
+      {
+        name: 'Feline',
+        type: 'Mammal',
+        extinct: false
+      });
+    const species2 = await Species.insert(
+      {
+        name: 'Canine',
+        type: 'Mammal',
+        extinct: false
+      });
+    const species3 = await Species.insert({
+      name: 'Bear',
+      type: 'Mammal',
+      extinct: false
+    });
+
+    return await request(app)
+      .get('/api/species/2')
+      .then((res) =>
+      {
+        console.log('RESPONSE BODY AT GET ID SPECIES TEST', res.body);
+        expect(res.body).toEqual( 
+          {
+            id: '2',
+            name: 'Canine',
+            type: 'Mammal',
+            extinct: false
+          });
+      });
+  });
+
   afterAll(() => {
     pool.end();
   });
