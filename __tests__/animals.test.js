@@ -23,8 +23,8 @@ async function saveSpecies() {
     },
   ];
   await Promise.all(
-    testSpecies.map(async (user) => {
-      await request(app).post('/api/species').send(user);
+    testSpecies.map(async (species) => {
+      await request(app).post('/api/species').send(species);
     })
   );
 }
@@ -49,15 +49,15 @@ async function saveAnimals() {
     },
   ];
   await Promise.all(
-    testAnimals.map(async (user) => {
-      await request(app).post('/api/animals').send(user);
+    testAnimals.map(async (animals) => {
+      await request(app).post('/api/animals').send(animals);
     })
   );
 }
 
 
 
-describe('alchemy-app routes', () => {
+describe('animal table routes', () => {
   beforeEach(() => {
     return setup(pool);
   });
@@ -98,7 +98,57 @@ describe('alchemy-app routes', () => {
       .then((res) =>
       {
         console.log('RESPONSE BODY AT GET ALL ANIMALS TEST', res.body);
-        expect(res.body).toEqual(expect.any(Array));
+        expect(res.body).toEqual([
+          {
+            animal: 'Siberian Tiger',
+            diet: 'carnivore',
+            species_id: '1'
+          },
+          {
+            animal: 'Polar Bear',
+            diet: 'carnivore',
+            species_id: '3'
+          },
+          {
+            animal: 'Arctic Wolf',
+            diet: 'carnivore',
+            species_id: '2'
+          },
+        ]);
+      });
+  });
+
+
+
+  it('it gets all animals & their species from table', async () =>
+  {
+    await saveSpecies();
+    await saveAnimals();
+
+    return await request(app)
+      .get('/api/animalSpecies')
+      .then((res) =>
+      {
+        console.log('RESPONSE BODY AT GET ALL ANIMALS & SPECIES TEST', res.body);
+        expect(res.body).toEqual(
+          [
+            {
+              animal: 'Siberian Tiger',
+              diet: 'carnivore',
+              species_id: '1'
+            },
+            {
+              animal: 'Polar Bear',
+              diet: 'carnivore',
+              species_id: '3'
+            },
+            {
+              animal: 'Arctic Wolf',
+              diet: 'carnivore',
+              species_id: '2'
+            },
+          ]
+        );
       });
   });
 
