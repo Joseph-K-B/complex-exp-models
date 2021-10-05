@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const pool = require('../lib/utils/pool.js');
 const setup = require('../data/setup.js');
 const request = require('supertest');
@@ -59,7 +60,7 @@ describe('alchemy-app routes', () => {
       .get('/api/species')
       .then((res) =>
       {
-        console.log('RESPONSE BODY AT GET ALL SPECIES TEST', res.body);
+        // console.log('RESPONSE BODY AT GET ALL SPECIES TEST', res.body);
         expect(res.body).toEqual(expect.any(Array));
       });
   });
@@ -90,7 +91,7 @@ describe('alchemy-app routes', () => {
       .get('/api/species/2')
       .then((res) =>
       {
-        console.log('RESPONSE BODY AT GET ID SPECIES TEST', res.body);
+        // console.log('RESPONSE BODY AT GET ID SPECIES TEST', res.body);
         expect(res.body).toEqual( 
           {
             id: '2',
