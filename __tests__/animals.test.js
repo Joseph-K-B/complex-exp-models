@@ -33,17 +33,17 @@ async function saveSpecies() {
 async function saveAnimals() {
   const testAnimals = [
     {
-      name: 'Siberian Tiger',
+      animal: 'Siberian Tiger',
       diet: 'carnivore',
       species_id: '1'
     },
     {
-      name: 'Polar Bear',
+      animal: 'Polar Bear',
       diet: 'carnivore',
       species_id: '3'
     },
     {
-      name: 'Arctic Wolf',
+      animal: 'Arctic Wolf',
       diet: 'carnivore',
       species_id: '2'
     },
@@ -68,9 +68,9 @@ describe('alchemy-app routes', () => {
       .post('/api/animals')
       .send(
         {
-          name: 'Siberian Tiger',
+          animal: 'Siberian Tiger',
           diet: 'carnivore',
-          species_id: '2'
+          speciesId: '2'
         }
       ).then(res =>
       {
@@ -78,9 +78,9 @@ describe('alchemy-app routes', () => {
         expect(res.body).toEqual(
           {
             id: '1',
-            name: 'Feline',
-            type: 'Mammal',
-            extinct: false
+            animal: 'Siberian Tiger',
+            diet: 'carnivore',
+            speciesId: '2'
           });
       });
   });

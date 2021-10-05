@@ -24,7 +24,7 @@ describe('alchemy-app routes', () => {
         }
       ).then(res =>
       {
-        console.log('RESPONSE BODY AT POST TEST', res.body);
+        // console.log('RESPONSE BODY AT POST TEST', res.body);
         expect(res.body).toEqual(
           {
             id: '1',
