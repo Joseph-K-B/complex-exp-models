@@ -27,7 +27,7 @@ describe('alchemy-app routes', () => {
         // console.log('RESPONSE BODY AT POST TEST', res.body);
         expect(res.body).toEqual(
           {
-            id: '1',
+            id: '2',
             name: 'Feline',
             type: 'Mammal',
             extinct: false
@@ -95,7 +95,7 @@ describe('alchemy-app routes', () => {
         expect(res.body).toEqual( 
           {
             id: '2',
-            name: 'Canine',
+            name: 'Feline',
             type: 'Mammal',
             extinct: false
           });
