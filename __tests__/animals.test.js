@@ -36,17 +36,17 @@ async function saveAnimals() {
     {
       animal: 'Siberian Tiger',
       diet: 'carnivore',
-      species_id: 1
+      speciesId: 1
     },
     {
       animal: 'Polar Bear',
       diet: 'carnivore',
-      species_id: 3
+      speciesId: 3
     },
     {
       animal: 'Arctic Wolf',
       diet: 'carnivore',
-      species_id: 2
+      speciesId: 2
     },
   ];
   await Promise.all(
@@ -80,7 +80,7 @@ describe('animal table routes', () => {
         }
       ).then(res =>
       {
-        console.log('RESPONSE BODY AT POST TEST', res.body);
+        // console.log('RESPONSE BODY AT POST TEST', res.body);
         expect(res.body).toEqual(
           {
             id: '1',
@@ -94,69 +94,58 @@ describe('animal table routes', () => {
 
 
 
-  //   it('it gets all animals from table', async () =>
-  //   {
-  //     await saveSpecies();
-  //     await saveAnimals();
-  //     // const animal1 = await Animals.insert({
-  //     //   animal: 'Siberian Tiger',
-  //     //   diet: 'carnivore',
-  //     //   species_id: '1'
-  //     // });
-  //     // const animal2 = await Animals.insert({
-  //     //   animal: 'Polar Bear',
-  //     //   diet: 'carnivore',
-  //     //   species_id: '3'
-  //     // });
-  //     // const animal3 = await Animals.insert({
-  //     //   animal: 'Arctic Wolf',
-  //     //   diet: 'carnivore',
-  //     //   species_id: '2'
-  //     // });
+  it('it gets all animals from table', async () =>
+  {
+    await saveSpecies();
+    await saveAnimals();
+   
 
-  //     return await request(app)
-  //       .get('/api/animals')
-  //       .then((res) =>
-  //       {
-  //         console.log('RESPONSE BODY AT GET ALL ANIMALS TEST', res.body);
-  //         expect(res.body).toEqual([
-  //           {
-  //             animal: 'Siberian Tiger',
-  //             diet: 'carnivore'
-  //             // species_id: '1'
-  //           },
-  //           {
-  //             animal: 'Polar Bear',
-  //             diet: 'carnivore'
-  //             // species_id: '3'
-  //           },
-  //           {
-  //             animal: 'Arctic Wolf',
-  //             diet: 'carnivore'
-  //             // species_id: '2'
-  //           },
-  //         ]);
-  //       });
-  //   });
+    return request(app)
+      .get('/api/animals')
+      .then((res) =>
+      {
+        console.log('RESPONSE BODY AT GET ALL ANIMALS TEST', res.body);
+        expect(res.body).toEqual([
+          {
+            id: '1',
+            animal: 'Siberian Tiger',
+            diet: 'carnivore',
+            speciesId: expect.any(String)
+          },
+          {
+            id: '2',
+            animal: 'Polar Bear',
+            diet: 'carnivore',
+            speciesId: expect.any(String)
+          },
+          {
+            id: '3',
+            animal: 'Arctic Wolf',
+            diet: 'carnivore',
+            speciesId: expect.any(String)
+          },
+        ]);
+      });
+  });
 
-  //   it('it gets species by id from table', async () =>
-  //   {
-  //     await saveSpecies();
-  //     await saveAnimals();
+  // it('it gets species by id from table', async () =>
+  // {
+  //   await saveSpecies();
+  //   await saveAnimals();
 
-  //     return await request(app)
-  //       .get('/api/animals/3')
-  //       .then((res) =>
-  //       {
-  //         expect(res.body).toEqual(
-  //           {
-  //             animal: 'Arctic Wolf',
-  //             diet: 'carnivore',
-  //             species_id: '2'
-  //           }
-  //         );
-  //       });
-  //   });
+  //   return await request(app)
+  //     .get('/api/animals/3')
+  //     .then((res) =>
+  //     {
+  //       expect(res.body).toEqual(
+  //         {
+  //           animal: 'Arctic Wolf',
+  //           diet: 'carnivore',
+  //           species_id: '2'
+  //         }
+  //       );
+  //     });
+  // });
 
   //   it('it gets all animals & their species from table', async () =>
   //   {
