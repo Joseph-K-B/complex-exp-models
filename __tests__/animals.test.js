@@ -197,6 +197,31 @@ describe('animal table routes', () => {
   });
 
 
+
+  it('counts the number of animals ordered by species', async() =>
+  {
+    await saveSpecies();
+    await saveAnimals();
+
+    const animalCount = await request(app)
+      .get('/api/animals/count');
+    expect(animalCount).toEqual(
+      {
+        name:'Canine',
+        count: '2'
+      },
+      {
+        name:'Feline',
+        count: '1'
+      },
+      {
+        name:'Bear',
+        count: '1'
+      }
+    );
+  });
+
+
   afterAll(() => {
     pool.end();
   });
