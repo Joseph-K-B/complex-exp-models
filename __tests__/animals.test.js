@@ -32,19 +32,16 @@ async function saveAnimals() {
       animal: 'Siberian Tiger',
       diet: 'carnivore',
       speciesId: '2'
-      // speciesId: 1
     },
     {
       animal: 'Polar Bear',
       diet: 'carnivore',
       speciesId: '3'
-      // speciesId: 3
     },
     {
       animal: 'Arctic Wolf',
       diet: 'carnivore',
       speciesId: '1'
-      // speciesId: 2
     },
   ];
   await Promise.all(
@@ -74,7 +71,6 @@ describe('animal table routes', () => {
         }
       ).then(res =>
       {
-        // console.log('RESPONSE BODY AT POST TEST', res.body);
         expect(res.body).toEqual(
           {
             id: '2',
@@ -115,7 +111,6 @@ describe('animal table routes', () => {
       .get('/api/animals')
       .then((res) =>
       {
-        // console.log('RESPONSE BODY AT GET ALL ANIMALS & SPECIES TEST', res.body);
         expect(res.body).toEqual(
           [
             {
@@ -158,6 +153,35 @@ describe('animal table routes', () => {
             }
 
           ]);
+      });
+  });
+
+
+  it('updates animal by id', async () =>
+  {
+    await saveSpecies();
+    await saveAnimals();
+
+    return request(app)
+      .patch('/api/animals/1')
+      .send(
+        {
+          id: '1',
+          animal: 'Izzie the dog',
+          diet: 'anything',
+          speciesId: '1'
+        }
+      )
+      .then(() =>
+      {
+        expect(res.body).toEqual(
+          {
+            id: '1',
+            animal: 'Izzie the dog',
+            diet: 'anything',
+            speciesId: '1'
+          }
+        );
       });
   });
       
