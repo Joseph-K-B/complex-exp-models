@@ -186,6 +186,16 @@ describe('animal table routes', () => {
   });
       
  
+  it('deletes animal from table', async() =>
+  {
+    await saveSpecies();
+    await saveAnimals();
+
+    const res = await request(app)
+      .delete('/api/animals/4');
+    expect (res.body).toEqual({});
+  });
+
 
   afterAll(() => {
     pool.end();
