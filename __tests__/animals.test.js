@@ -108,19 +108,19 @@ describe('animal table routes', () => {
         expect(res.body).toEqual([
           {
             id: '1',
-            animal: 'Siberian Tiger',
+            animal: expect.any(String),
             diet: 'carnivore',
             speciesId: expect.any(String)
           },
           {
             id: '2',
-            animal: 'Polar Bear',
+            animal: expect.any(String),
             diet: 'carnivore',
             speciesId: expect.any(String)
           },
           {
             id: '3',
-            animal: 'Arctic Wolf',
+            animal: expect.any(String),
             diet: 'carnivore',
             speciesId: expect.any(String)
           },
@@ -128,24 +128,25 @@ describe('animal table routes', () => {
       });
   });
 
-  // it('it gets species by id from table', async () =>
-  // {
-  //   await saveSpecies();
-  //   await saveAnimals();
+  it('it gets species by id from table', async () =>
+  {
+    await saveSpecies();
+    await saveAnimals();
 
-  //   return await request(app)
-  //     .get('/api/animals/3')
-  //     .then((res) =>
-  //     {
-  //       expect(res.body).toEqual(
-  //         {
-  //           animal: 'Arctic Wolf',
-  //           diet: 'carnivore',
-  //           species_id: '2'
-  //         }
-  //       );
-  //     });
-  // });
+    return await request(app)
+      .get('/api/animals/3')
+      .then((res) =>
+      {
+        expect(res.body).toEqual(
+          {
+            id: '3',
+            animal: 'Arctic Wolf',
+            diet: 'carnivore',
+            speciesId: '2'
+          }
+        );
+      });
+  });
 
   //   it('it gets all animals & their species from table', async () =>
   //   {
