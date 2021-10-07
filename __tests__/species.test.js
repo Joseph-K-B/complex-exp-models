@@ -44,13 +44,7 @@ describe('alchemy-app routes', () => {
         type: 'Mammal',
         extinct: false
       });
-    const species2 = await Species.insert(
-      {
-        name: 'Canine',
-        type: 'Mammal',
-        extinct: false
-      });
-    const species3 = await Species.insert({
+    const species2 = await Species.insert({
       name: 'Bear',
       type: 'Mammal',
       extinct: false
@@ -69,18 +63,11 @@ describe('alchemy-app routes', () => {
 
   it('it gets species by id from table', async () =>
   {
-    const species1 = await Species.insert(
-      {
-        name: 'Feline',
-        type: 'Mammal',
-        extinct: false
-      });
-    const species2 = await Species.insert(
-      {
-        name: 'Canine',
-        type: 'Mammal',
-        extinct: false
-      });
+    const species1 = await Species.insert({
+      name: 'Feline',
+      type: 'Mammal',
+      extinct: false
+    });
     const species3 = await Species.insert({
       name: 'Bear',
       type: 'Mammal',
