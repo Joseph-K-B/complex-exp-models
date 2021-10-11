@@ -58,8 +58,7 @@ describe('animal table routes', () => {
   });
   
 
-  it('posts new animal to table', async () =>
-  {
+  it('posts new animal to table', async () => {
     await saveSpecies();
     return request(app)
       .post('/api/animals')
@@ -89,8 +88,7 @@ describe('animal table routes', () => {
 
     return await request(app)
       .get('/api/animals/3')
-      .then((res) =>
-      {
+      .then((res) => {
         expect(res.body).toEqual(
           {
             id: '3',
@@ -102,15 +100,13 @@ describe('animal table routes', () => {
       });
   });
 
-  it('it gets all animals & their species from table', async () =>
-  {
+  it('it gets all animals & their species from table', async () => {
     await saveSpecies();
     await saveAnimals();
 
     return await request(app)
       .get('/api/animals')
-      .then((res) =>
-      {
+      .then((res) => {
         expect(res.body).toEqual(
           [
             {
@@ -157,8 +153,7 @@ describe('animal table routes', () => {
   });
 
 
-  it('updates animal by id', async () =>
-  {
+  it('updates animal by id', async () => {
     await saveSpecies();
     await saveAnimals();
 
@@ -186,8 +181,7 @@ describe('animal table routes', () => {
   });
       
  
-  it('deletes animal from table', async() =>
-  {
+  it('deletes animal from table', async() => {
     await saveSpecies();
     await saveAnimals();
 
@@ -198,30 +192,29 @@ describe('animal table routes', () => {
 
 
 
-  // it('counts the number of animals ordered by species', async() =>
-  // {
-  //   await saveSpecies();
-  //   await saveAnimals();
+  it('counts the number of animals ordered by species', async() => {
+    await saveSpecies();
+    await saveAnimals();
 
-  //   return request(app)
-  //     .get('/api/animals/count')
-  //     .then((res) => {
-  //       expect(res.body).toEqual(
-  //         {
-  //           name:'Canine',
-  //           count: '2'
-  //         },
-  //         {
-  //           name:'Feline',
-  //           count: '1'
-  //         },
-  //         {
-  //           name:'Bear',
-  //           count: '1'
-  //         }
-  //       );
-  //     });      
-  // });
+    return request(app)
+      .get('/api/animals/count')
+      .then((res) => {
+        expect(res.body).toEqual([
+          {
+            name:'Canine',
+            count: '2'
+          },
+          {
+            name:'Feline',
+            count: '1'
+          },
+          {
+            name:'Bear',
+            count: '1'
+          }
+        ]);
+      });      
+  });
 
 
   afterAll(() => {
